@@ -1,6 +1,7 @@
 ### マーカーIDと、動画を重ねて表示する
 import cv2
 from cv2 import aruco
+
 import time
 
 ### --- aruco設定 --- ###
