@@ -1,10 +1,7 @@
-###マーカーIDと、動画を重ねて表示する###
+#マーカーIDと、動画を重ねて表示する
 import cv2
 from cv2 import aruco
-import time
-from matplotlib.image import imread
 import os
-import numpy as np
 
 RTSP_URL ='rtsp://192.168.42.1/live'
 os.environ['OPENCV_FFMPEG_CAPTURE_OPTIONS']='rtsp_transport;udp'
