@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="392aa905-6561-477a-b87c-246e08f576e3" name="Changes" comment="add">
+      <change beforePath="$PROJECT_DIR$/.idea/drone.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/drone.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aruco_marker/video.py" beforeDir="false" afterPath="$PROJECT_DIR$/aruco_marker/video.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parrot_anafi/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/parrot_anafi/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/aruco_marker/kato.py" beforeDir="false" afterPath="$PROJECT_DIR$/parrot_anafi/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,14 +109,7 @@
       <option name="project" value="LOCAL" />
       <updated>1669368808696</updated>
     </task>
-    <task id="LOCAL-00009" summary="add">
-      <created>1669377232187</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1669377232187</updated>
-    </task>
-    <option name="localTasksCounter" value="10" />
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
