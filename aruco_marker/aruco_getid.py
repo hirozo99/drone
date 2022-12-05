@@ -1,29 +1,29 @@
 import cv2
 from cv2 import aruco
+import os
 import numpy as np
 import time
 
-class MarkSearch :
+RTSP_URL ='rtsp://192.168.42.1/live'
+os.environ['OPENCV_FFMPEG_CAPTURE_OPTIONS']='rtsp_transport;udp'
 
-    ### --- aruco設定 --- ###
-    dict_aruco = aruco.Dictionary_get(aruco.DICT_4X4_50)
-    parameters = aruco.DetectorParameters_create()
 
-    def __init__(self, cameraID):
-        self.cap = cv2.VideoCapture(cameraID)
 
-    def get_markID(self):
-        """
-        静止画を取得し、arucoマークのidリストを取得する
-        """
-        ret, frame = self.cap.read()
-        gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+### --- aruco設定 --- ###
+dict_aruco = aruco.Dictionary_get(aruco.DICT_4X4_50)
+parameters = aruco.DetectorParameters_create()
 
-        corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
+cap = cv2.VideoCapture(RTSP_URL)
 
-        list_ids = np.ravel(ids)
-
-        return list_ids
+def get_markID():
+    """
+    静止画を取得し、arucoマークのidリストを取得する
+    """
+    ret, frame = cap.read()
+    gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+    corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
+    list_ids = np.ravel(ids)
+    return list_ids
 
  
 if __name__ == "__main__" :
@@ -38,12 +38,22 @@ if __name__ == "__main__" :
 
     ### --- parameter --- ###
     cameraID = 0
-    cam0_mark_search = MarkSearch(cameraID)
 
     try:
         while True:
             print(' ----- get_markID ----- ')
-            print(cam0_mark_search.get_markID())
-            time.sleep(0.5)
+            print(cap.get_markID())
+            time.sleep(1)
+            ret, frame = cap.read()
+            gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+
+            corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
+
+            frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
+            cv2.imshow('frame', frame_markers)
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
+        cv2.destroyWindow('frame')
+        cap.release()
     except KeyboardInterrupt:
-        cam0_mark_search.cap.release()
+        cap.release()
