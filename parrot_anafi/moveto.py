@@ -1,11 +1,10 @@
 import olympe
-import os, csv, time, tempfile
+import os
 from olympe.messages.ardrone3.Piloting import TakeOff, Landing, moveTo
 from olympe.messages.ardrone3.PilotingState import FlyingStateChanged, MoveToChanged
 from olympe.enums.ardrone3.Piloting import MoveTo_Orientation_mode
 
-DRONE_IP = "192.168.42.1"
-drone = olympe.Drone(DRONE_IP)
+DRONE_IP = os.environ.get("DRONE_IP", "192.168.42.1")
 
 
 def takeoff(drone):
