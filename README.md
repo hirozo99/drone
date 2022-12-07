@@ -6,3 +6,8 @@
 [Olympe Documentation](https://developer.parrot.com/docs/olympe/index.html)
 
 [QGroundControl User Guide](https://docs.qgroundcontrol.com/master/en/)
+
+
+```olympe:command
+source ~/code/parrot-groundsdk/./products/olympe/linux/env/shell
+```
