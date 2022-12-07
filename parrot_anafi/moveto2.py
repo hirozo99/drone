@@ -24,10 +24,7 @@ if __name__ == "__main__":
     drone.connect()
     assert drone(TakeOff()).wait().success()
     time.sleep(10)
-    assert drone(
-        moveTo(drone, 35.70979750, 139.522988, 3.0)
-        >> moveToChanged(status=status.DONE, _timeout=10)
-    ).wait().success()
+    assert drone(moveTo(drone, 35.70979750, 139.522988, 3.0)).wait().success()
     assert drone(Landing()).wait().success()
     drone.disconnect()
 
