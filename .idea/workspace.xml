@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="392aa905-6561-477a-b87c-246e08f576e3" name="Changes" comment="add">
-      <change afterPath="$PROJECT_DIR$/aruco_marker/get_coodinate.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aruco_marker/aruco_getid.py" beforeDir="false" afterPath="$PROJECT_DIR$/aruco_marker/aruco_getid.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parrot_anafi/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/parrot_anafi/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parrot_anafi/moveto.py" beforeDir="false" afterPath="$PROJECT_DIR$/parrot_anafi/moveto.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +130,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669969195607</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="add">
+      <created>1670230642854</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1670230642854</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
