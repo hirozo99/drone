@@ -22,16 +22,12 @@ DRONE_IP = os.environ.get("DRONE_IP", "192.168.42.1")
 if __name__ == "__main__":
     drone = olympe.Drone(DRONE_IP)
     drone.connect()
+    assert drone(TakeOff()).wait().success()
+    time.sleep(10)
     assert drone(
-        TakeOff()
-        >> FlyingStateChanged(state="hovering", _timeout=5)
-    ).wait().success()
-    assert drone(
-        moveTo(drone, 35.70979750, 139.522988, 3.0, mode.orientation_mode.to_target, 0.0)
+        moveTo(drone, 35.70979750, 139.522988, 3.0)
         >> moveToChanged(status=status.DONE, _timeout=10)
     ).wait().success()
     assert drone(Landing()).wait().success()
     drone.disconnect()
-
-
 
