@@ -1,9 +1,15 @@
-### 検出したマーカーのIDをリストで返す
+# import olympe
+# import time
+# from olympe.messages.ardrone3.Piloting import TakeOff, Landing
 import cv2
 from cv2 import aruco
+import os
 import numpy as np
 import time
 
+###anafiの設定
+cameraID ='rtsp://192.168.42.1/live'
+os.environ['OPENCV_FFMPEG_CAPTURE_OPTIONS']='rtsp_transport;udp'
 
 class MarkSearch:
     ### --- aruco設定 --- ###
