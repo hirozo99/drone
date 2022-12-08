@@ -16,7 +16,7 @@ def takeoff(drone):
 
 def moveto(drone):
     drone(
-        moveTo(35.70979750, 139.522988, 3.0, MoveTo_Orientation_mode.TO_TARGET, 0.0)
+        moveTo(139.522988, 35.70979750, 3.0, MoveTo_Orientation_mode.TO_TARGET, 0.0)
         >> MoveToChanged(status="DONE", _timeout=10)
     ).wait().success()
 
