@@ -8,8 +8,8 @@ import numpy as np
 import time
 
 ###anafiの設定
-cameraID ='rtsp://192.168.42.1/live'
-os.environ['OPENCV_FFMPEG_CAPTURE_OPTIONS']='rtsp_transport;udp'
+cameraID = 'rtsp://192.168.42.1/live'
+os.environ['OPENCV_FFMPEG_CAPTURE_OPTIONS'] = 'rtsp_transport;udp'
 
 class MarkSearch:
     ### --- aruco設定 --- ###
@@ -28,10 +28,10 @@ class MarkSearch:
 
         corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
 
+        frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
+        cv2.imshow('frame', frame_markers)
         list_ids = np.ravel(ids)
-
         return list_ids
-
 
 if __name__ == "__main__":
     import cv2
@@ -44,7 +44,9 @@ if __name__ == "__main__":
     parameters = aruco.DetectorParameters_create()
 
     ### --- parameter --- ###
-    cameraID = 0
+    ###anafiの設定
+    cameraID = 'rtsp://192.168.42.1/live'
+    os.environ['OPENCV_FFMPEG_CAPTURE_OPTIONS'] = 'rtsp_transport;udp'
     cam0_mark_search = MarkSearch(cameraID)
 
 
