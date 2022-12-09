@@ -8,8 +8,9 @@ if __name__ == "__main__":
         drone = olympe.Drone(DRONE_IP)
         drone.connect()
         drone(TakeOff() >> FlyingStateChanged(state="hovering", _timeout=5)).wait().success()
+        #法政大学小金井キャンパスの中庭四角の角
         drone(
-                moveTo(35.709750, 139.522989, 5.0, mode.orientation_mode.to_target, 0.0) >> moveToChanged(latitude=35.709750, longitutde=139.522989, altitude=5.0, orientation_mode=mode.orientation_mode.to_target, status='DONE', _policy='wait') >> FlyingStateChanged(state="hovering", _timeout=5)
+                moveTo(35.709751, 139.523337, 5.0, mode.orientation_mode.to_target, 0.0) >> moveToChanged(latitude=35.709751, longitutde=139.523337, altitude=5.0, orientation_mode=mode.orientation_mode.to_target, status='DONE', _policy='wait') >> FlyingStateChanged(state="hovering", _timeout=5)
         ).wait().success()
         drone(Landing()).wait().success()
         drone.disconnect()

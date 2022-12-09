@@ -5,10 +5,8 @@ import os
 import numpy as np
 import time
 # parrot
-import olympe
-import os
-import time
-from olympe.messages.ardrone3.Piloting import TakeOff, Landing
+#import olympe
+#from olympe.messages.ardrone3.Piloting import TakeOff, Landing
 
 RTSP_URL ='rtsp://192.168.42.1/live'
 os.environ['OPENCV_FFMPEG_CAPTURE_OPTIONS']='rtsp_transport;udp'
@@ -31,9 +29,9 @@ try:
         frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
         cv2.imshow('frame', frame_markers)
         list_ids = np.ravel(ids)
-        if list_ids[0] == 1:
+        if list_ids[0] == 0:
             print("着陸体制に入ります！！")
-            time.sleep(2.5)
+            pass
 
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
