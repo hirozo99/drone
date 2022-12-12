@@ -26,7 +26,6 @@ def aruco_landing():
 
             corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
 
-            frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
             list_ids = np.ravel(ids)
             print(list_ids)
             if list_ids[0] == 0:
