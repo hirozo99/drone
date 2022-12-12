@@ -19,16 +19,16 @@ cap = cv2.VideoCapture(RTSP_URL)
 
 
 def aruco_landing():
-        while True:
-            ret, frame = cap.read()
-            gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+    while True:
+        ret, frame = cap.read()
+        gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
 
-            corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
+        corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
 
-            list_ids = np.ravel(ids)
-            print(list_ids)
-            if list_ids[0] == 0:
-                print("着陸体制に入ります！！")
+        list_ids = np.ravel(ids)
+        print(list_ids)
+        if list_ids[0] == 0:
+            print("着陸体制に入ります！！")
 
 
 if __name__ == "__main__":
