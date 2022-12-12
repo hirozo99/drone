@@ -19,7 +19,6 @@ cap = cv2.VideoCapture(RTSP_URL)
 
 
 def aruco_landing():
-    try:
         while True:
             ret, frame = cap.read()
             gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
@@ -31,13 +30,6 @@ def aruco_landing():
             if list_ids[0] == 0:
                 print("着陸体制に入ります！！")
 
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
-        cv2.destroyWindow('frame')
-        cap.release()
-    except KeyboardInterrupt:
-        cv2.destroyWindow('frame')
-        cap.release()
 
 if __name__ == "__main__":
     aruco_landing()
