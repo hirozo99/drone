@@ -1,64 +1,64 @@
-# import olympe
-# import time
-# from olympe.messages.ardrone3.Piloting import TakeOff, Landing
+#マーカーIDと、動画を重ねて表示する
 import cv2
 from cv2 import aruco
-import os
 import numpy as np
+
+# parrot
+import olympe
+import os
 import time
+from olympe.messages.ardrone3.Piloting import TakeOff, Landing
 
-###anafiの設定
-cameraID = 'rtsp://192.168.42.1/live'
-os.environ['OPENCV_FFMPEG_CAPTURE_OPTIONS'] = 'rtsp_transport;udp'
+DRONE_IP = os.environ.get("DRONE_IP", "192.168.42.1")
 
-class MarkSearch:
-    ### --- aruco設定 --- ###
-    dict_aruco = aruco.Dictionary_get(aruco.DICT_4X4_50)
-    parameters = aruco.DetectorParameters_create()
-
-    def __init__(self, cameraID):
-        self.cap = cv2.VideoCapture(cameraID)
-
-    def get_markID(self):
-        """
-        静止画を取得し、arucoマークのidリストを取得する
-        """
-        ret, frame = self.cap.read()
-        gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-
-        corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
-
-        frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
-        cv2.imshow('frame', frame_markers)
-        list_ids = np.ravel(ids)
-        return list_ids
-
-if __name__ == "__main__":
-    import cv2
-    from cv2 import aruco
-    import numpy as np
-    import time
-
-    ### --- aruco設定 --- ###
-    dict_aruco = aruco.Dictionary_get(aruco.DICT_4X4_50)
-    parameters = aruco.DetectorParameters_create()
-
-    ### --- parameter --- ###
-    ###anafiの設定
-    cameraID = 'rtsp://192.168.42.1/live'
-    os.environ['OPENCV_FFMPEG_CAPTURE_OPTIONS'] = 'rtsp_transport;udp'
-    cam0_mark_search = MarkSearch(cameraID)
+RTSP_URL ='rtsp://192.168.42.1/live'
+os.environ['OPENCV_FFMPEG_CAPTURE_OPTIONS']='rtsp_transport;udp'
 
 
+### --- aruco設定 --- ###
+dict_aruco = aruco.Dictionary_get(aruco.DICT_4X4_50)
+parameters = aruco.DetectorParameters_create()
+
+cap = cv2.VideoCapture(RTSP_URL)
+
+def test_takeoff():
+    drone = olympe.Drone(DRONE_IP)
+    drone.connect()
+    assert drone(TakeOff()).wait().success()
+    time.sleep(10)
+
+def test_landing():
+    drone = olympe.Drone(DRONE_IP)
+    drone.connect()
+    time.sleep(5)
+    assert drone(Landing()).wait().success()
+    drone.disconnect()
+
+def aruco_landing():
     try:
         while True:
-            print(' ----- get_markID ----- ')
-            print(cam0_mark_search.get_markID())
-            print('idを検出中')
-            if cam0_mark_search.get_markID()[0] == 0:
-                print("着陸体制に入ります。")
-                time.sleep(3)
+            ret, frame = cap.read()
+            gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+
+            corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
+
+            frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
+            cv2.imshow('frame', frame_markers)
+            list_ids = np.ravel(ids)
+            if list_ids[0] == 0:
+                print("着陸体制に入ります！！")
+                test_landing()
+
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                test_landing()
                 break
-            time.sleep(1)
+        cv2.destroyWindow('frame')
+        cap.release()
     except KeyboardInterrupt:
-        cam0_mark_search.cap.release()
+        cv2.destroyWindow('frame')
+        cap.release()
+        test_landing()
+
+if __name__ == "__main__":
+    test_takeoff()
+    aruco_landing()
