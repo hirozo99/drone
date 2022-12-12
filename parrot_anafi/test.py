@@ -2,12 +2,15 @@
 import cv2
 from cv2 import aruco
 import numpy as np
+import os
 
 # parrot
 import olympe
 import os
 import time
-from olympe.messages.ardrone3.Piloting import TakeOff, Landing
+from olympe.messages.ardrone3.Piloting import TakeOff, Landing, moveTo
+from olympe.messages.ardrone3.PilotingState import FlyingStateChanged, moveToChanged
+import olympe.enums.move as mode
 
 DRONE_IP = os.environ.get("DRONE_IP", "192.168.42.1")
 
@@ -22,44 +25,37 @@ parameters = aruco.DetectorParameters_create()
 cap = cv2.VideoCapture(RTSP_URL)
 
 def test_takeoff():
-    drone = olympe.Drone(DRONE_IP)
-    drone.connect()
     assert drone(TakeOff()).wait().success()
-    time.sleep(10)
+
+def test_moveto():
+    """法政大学小金井キャンパスの中庭、白い四角タイルの角"""
+    assert drone(
+                 moveTo(35.709751, 139.523337, 3.0, mode.orientation_mode.to_target, 0.0)
+                 >> moveToChanged(latitude=35.709751, longitutde=139.523337, altitude=3.0, orientation_mode=mode.orientation_mode.to_target, status='DONE', _policy='wait')
+                 >> FlyingStateChanged(state="hovering", _timeout=5)
+    ).wait().success()
 
 def test_landing():
-    drone = olympe.Drone(DRONE_IP)
-    drone.connect()
-    time.sleep(5)
     assert drone(Landing()).wait().success()
-    drone.disconnect()
 
 def aruco_landing():
-    try:
-        while True:
-            ret, frame = cap.read()
-            gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+    while True:
+        ret, frame = cap.read()
+        gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
 
-            corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
+        corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
 
-            frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
-            #cv2.imshow('frame', frame_markers)
-            list_ids = np.ravel(ids)
-            print(list_ids)
-            if list_ids[0] == 0:
-                print("着陸体制に入ります！！")
-                test_landing()
-
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                test_landing()
-                break
-        cv2.destroyWindow('frame')
-        cap.release()
-    except KeyboardInterrupt:
-        cv2.destroyWindow('frame')
-        cap.release()
-        test_landing()
+        list_ids = np.ravel(ids)
+        print(list_ids)
+        if list_ids[0] == 0:
+            print("着陸体制に入ります！！")
+            test_landing()
+            break
 
 if __name__ == "__main__":
+    drone = olympe.Drone(DRONE_IP)
+    drone.connect()
     test_takeoff()
+    test_moveto()
     aruco_landing()
+    drone.disconnect()

@@ -2,12 +2,10 @@
 import cv2
 from cv2 import aruco
 import numpy as np
-import os
 
 # parrot
 import olympe
 import os
-import time
 from olympe.messages.ardrone3.Piloting import TakeOff, Landing
 
 DRONE_IP = os.environ.get("DRONE_IP", "192.168.42.1")
@@ -24,6 +22,7 @@ cap = cv2.VideoCapture(RTSP_URL)
 
 def test_takeoff():
     assert drone(TakeOff()).wait().success()
+
 
 def test_landing():
     assert drone(Landing()).wait().success()
