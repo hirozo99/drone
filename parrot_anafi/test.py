@@ -23,14 +23,21 @@ parameters = aruco.DetectorParameters_create()
 cap = cv2.VideoCapture(RTSP_URL)
 
 def test_takeoff():
+    drone = olympe.Drone(DRONE_IP)
+    drone.connect()
     assert drone(TakeOff()).wait().success()
 
 def test_moveto():
+    drone = olympe.Drone(DRONE_IP)
+    drone.connect()
     """法政大学小金井キャンパスの中庭、白い四角タイルの角"""
-    assert drone(moveTo(35.709751, 139.523337, 3.0, mode.orientation_mode.to_target, 0.0)).wait().success()
+    drone(moveTo(35.709751, 139.523337, 3.0, mode.orientation_mode.to_target, 0.0)).wait().success()
 
 def test_landing():
+    drone = olympe.Drone(DRONE_IP)
+    drone.connect()
     assert drone(Landing()).wait().success()
+    drone.disconnect()
 
 def aruco_landing():
     while True:
@@ -46,10 +53,10 @@ def aruco_landing():
             test_landing()
             break
 
-if __name__ == "__main__":
-    drone = olympe.Drone(DRONE_IP)
-    drone.connect()
+def main():
     test_takeoff()
     test_moveto()
     aruco_landing()
-    drone.disconnect()
+
+if __name__ == "__main__":
+    main()
