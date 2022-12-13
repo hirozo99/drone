@@ -2,12 +2,10 @@
 import cv2
 from cv2 import aruco
 import numpy as np
-import os
 
 # parrot
 import olympe
 import os
-import time
 from olympe.messages.ardrone3.Piloting import TakeOff, Landing, moveTo
 from olympe.messages.ardrone3.PilotingState import FlyingStateChanged, moveToChanged
 import olympe.enums.move as mode
@@ -29,11 +27,7 @@ def test_takeoff():
 
 def test_moveto():
     """法政大学小金井キャンパスの中庭、白い四角タイルの角"""
-    assert drone(
-                 moveTo(35.709751, 139.523337, 3.0, mode.orientation_mode.to_target, 0.0)
-                 >> moveToChanged(latitude=35.709751, longitutde=139.523337, altitude=3.0, orientation_mode=mode.orientation_mode.to_target, status='DONE', _policy='wait')
-                 >> FlyingStateChanged(state="hovering", _timeout=5)
-    ).wait().success()
+    assert drone(moveTo(35.709751, 139.523337, 3.0, mode.orientation_mode.to_target, 0.0)).wait().success()
 
 def test_landing():
     assert drone(Landing()).wait().success()
