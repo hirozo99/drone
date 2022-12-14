@@ -2,6 +2,7 @@
 import cv2
 from cv2 import aruco
 import os
+import numpy as np
 
 RTSP_URL ='rtsp://192.168.42.1/live'
 os.environ['OPENCV_FFMPEG_CAPTURE_OPTIONS']='rtsp_transport;udp'
@@ -21,7 +22,10 @@ try:
         corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
 
         frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
-        cv2.imshow('frame', frame_markers)
+        cv2.imshow('display', frame_markers)
+        # cv2.imshow('frame', frame_markers)
+        list_ids = np.ravel(ids)
+        print(list_ids)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
     cv2.destroyWindow('frame')

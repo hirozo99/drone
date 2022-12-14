@@ -3,6 +3,7 @@ import cv2
 from cv2 import aruco
 import numpy as np
 import os
+import time
 
 
 DRONE_IP = os.environ.get("DRONE_IP", "192.168.42.1")
@@ -28,6 +29,7 @@ def aruco_landing():
         print(list_ids)
         if list_ids[0] == 0:
             print("着陸体制に入ります！！")
+            break
 
 
 if __name__ == "__main__":
