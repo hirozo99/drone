@@ -3,11 +3,10 @@ import cv2
 from cv2 import aruco
 import numpy as np
 
-# parrot
 import olympe
 import os
 from olympe.messages.ardrone3.Piloting import TakeOff, Landing, moveTo
-from olympe.messages.ardrone3.PilotingState import FlyingStateChanged, moveToChanged
+#from olympe.messages.ardrone3.PilotingState import FlyingStateChanged, moveToChanged
 import olympe.enums.move as mode
 
 DRONE_IP = os.environ.get("DRONE_IP", "192.168.42.1")
