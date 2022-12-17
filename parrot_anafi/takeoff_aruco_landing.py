@@ -40,7 +40,8 @@ def aruco_landing():
         gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
 
         corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
-
+        frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
+        cv2.imshow('display', frame_markers)
         list_ids = np.ravel(ids)
         print(list_ids)
         if list_ids[0] == 0:
