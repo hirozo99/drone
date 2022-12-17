@@ -36,7 +36,7 @@ def test_moveto():
     drone = olympe.Drone(DRONE_IP)
     drone.connect()
     """法政大学小金井キャンパスの中庭、白い四角タイルの角"""
-    drone(moveTo(35.709751, 139.523337, 3.0, mode.orientation_mode.to_target, 0.0)).wait().success()
+    drone(moveTo(35.709750, 139.523334, 3.0, mode.orientation_mode.to_target, 0.0)).wait().success()
 
 def test_landing():
     drone = olympe.Drone(DRONE_IP)
