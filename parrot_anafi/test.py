@@ -63,6 +63,7 @@ def aruco_landing():
                 if list_ids[-1] == 4 and len(list_ids) == 5:
                     print("--------------------------着陸--------------------------")
                     test_landing()
+                    break
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 test_landing()
                 break
