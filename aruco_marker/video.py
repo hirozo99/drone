@@ -22,10 +22,15 @@ try:
         corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
 
         frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
-        cv2.imshow('display', frame_markers)
-        # cv2.imshow('frame', frame_markers)
-        list_ids = np.ravel(ids)
+        cv2.imshow('frame', frame_markers)
+        list_ids = list(np.ravel(ids))
+        list_ids.sort()
         print(list_ids)
+        if list_ids[0] == 0:
+            print("着陸体制に入ります！！")
+            if list_ids[-1] == 4 and len(list_ids) == 5:
+                print("--------------------------着陸--------------------------")
+                break
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
     cv2.destroyWindow('frame')
