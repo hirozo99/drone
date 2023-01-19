@@ -42,8 +42,8 @@ def aruco_landing():
         ret, frame = cap.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
         corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
-        frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
-        cv2.imshow('frame', frame_markers)
+        # frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
+        # cv2.imshow('frame', frame_markers)
         list_ids = list(np.ravel(ids))
         list_ids.sort()
         print(list_ids)
@@ -55,8 +55,8 @@ def aruco_landing():
             #     break
 
 def main():
-    takeoff()
     try:
+        takeoff()
         gain_altitude()
         aruco_landing()
     except KeyboardInterrupt:
