@@ -8,7 +8,6 @@ import time
 from olympe.messages.ardrone3.Piloting import TakeOff, Landing
 from olympe.messages.ardrone3.Piloting import moveBy
 
-
 # 変数の指定
 DRONE_IP = os.environ.get("DRONE_IP", "192.168.42.1")
 H = 6
@@ -37,9 +36,10 @@ def landing():
     drone.connect()
     assert drone(Landing()).wait().success()
     drone.disconnect()
+
 def aruco_landing():
     while True:
-        ret, frame = cap.read()
+        frame = cap.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
         corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
         # frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
