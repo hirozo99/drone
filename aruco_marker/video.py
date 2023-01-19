@@ -11,7 +11,6 @@ os.environ['OPENCV_FFMPEG_CAPTURE_OPTIONS']='rtsp_transport;udp'
 ### --- aruco設定 --- ###
 dict_aruco = aruco.Dictionary_get(aruco.DICT_4X4_50)
 parameters = aruco.DetectorParameters_create()
-
 cap = cv2.VideoCapture(RTSP_URL)
 
 try:
