@@ -13,17 +13,14 @@ def takeoff(drone):
         >> FlyingStateChanged(state="hovering", _timeout=5)
     ).wait().success()
 
-
 def moveto(drone):
     drone(
         moveTo(139.522988, 35.70979750, 3.0, MoveTo_Orientation_mode.TO_TARGET, 0.0)
         >> MoveToChanged(status="DONE", _timeout=10)
     ).wait().success()
 
-
 def landing(drone):
     drone(Landing()).wait().success()
-
 
 def main(drone):
     drone.connect()
