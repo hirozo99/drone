@@ -10,7 +10,7 @@ from olympe.messages.ardrone3.Piloting import moveBy
 
 # 変数の指定
 DRONE_IP = os.environ.get("DRONE_IP", "192.168.42.1")
-H = 9
+H = 3
 
 # aruco設定
 RTSP_URL ='rtsp://192.168.42.1/live'
