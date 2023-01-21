@@ -25,6 +25,7 @@ cap = cv2.VideoCapture(RTSP_URL)
 def test_takeoff():
     drone = olympe.Drone(DRONE_IP)
     drone.connect()
+    print("--------------------test_takeoff--------------------")
     assert drone(TakeOff()).wait().success()
 
 
@@ -52,8 +53,11 @@ def aruco_landing():
             break
 
 def main():
-    test_takeoff()
-    aruco_landing()
+    try:
+        test_takeoff()
+        aruco_landing()
+    except KeyboardInterrupt:
+        test_landing()
 
 if __name__ == "__main__":
     main()
