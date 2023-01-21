@@ -6,8 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="392aa905-6561-477a-b87c-246e08f576e3" name="Changes" comment="add">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/aruco_marker/video.py" beforeDir="false" afterPath="$PROJECT_DIR$/aruco_marker/video.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parrot_anafi/A.py" beforeDir="false" afterPath="$PROJECT_DIR$/parrot_anafi/gbt.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parrot_anafi/hirozo.py" beforeDir="false" afterPath="$PROJECT_DIR$/parrot_anafi/hirozo.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -420,7 +418,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674113646767</updated>
     </task>
-    <option name="localTasksCounter" value="49" />
+    <task id="LOCAL-00049" summary="add">
+      <created>1674128674666</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1674128674666</updated>
+    </task>
+    <option name="localTasksCounter" value="50" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -438,5 +443,16 @@
     <MESSAGE value="コメント修正" />
     <MESSAGE value="add" />
     <option name="LAST_COMMIT_MESSAGE" value="add" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/parrot_anafi/hirozo.py</url>
+          <line>40</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
