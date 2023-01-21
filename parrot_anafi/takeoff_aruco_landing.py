@@ -31,6 +31,7 @@ def test_takeoff():
 def test_landing():
     drone = olympe.Drone(DRONE_IP)
     drone.connect()
+    print("--------------------test_landing--------------------")
     assert drone(Landing()).wait().success()
     drone.disconnect()
 
