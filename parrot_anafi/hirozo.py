@@ -48,8 +48,9 @@ def aruco_landing():
         list_ids.sort()
         print(list_ids)
         if list_ids[0] == 0:
-            print("着陸体制に入ります！！")
+            print("***************landing***************")
             landing()
+            break
             # if list_ids[-1] == 4 and len(list_ids) == 5:
             #     print("--------------------------着陸--------------------------")
             #     break

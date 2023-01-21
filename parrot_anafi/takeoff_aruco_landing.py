@@ -43,7 +43,7 @@ def aruco_landing():
 
         corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
         frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
-        cv2.imshow('display', frame_markers)
+        cv2.imshow('frame', frame_markers)
         list_ids = list(np.ravel(ids))
         list_ids.sort()
         print(list_ids)
