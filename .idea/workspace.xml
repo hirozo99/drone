@@ -7,7 +7,6 @@
     <list default="true" id="392aa905-6561-477a-b87c-246e08f576e3" name="Changes" comment="add">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parrot_anafi/hirozo.py" beforeDir="false" afterPath="$PROJECT_DIR$/parrot_anafi/hirozo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/parrot_anafi/takeoff_aruco_landing.py" beforeDir="false" afterPath="$PROJECT_DIR$/parrot_anafi/takeoff_aruco_landing.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,13 +81,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668156860177</updated>
-    </task>
-    <task id="LOCAL-00010" summary="add">
-      <created>1669864463765</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1669864463765</updated>
     </task>
     <task id="LOCAL-00011" summary="add">
       <created>1669969195606</created>
@@ -426,7 +418,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674296685951</updated>
     </task>
-    <option name="localTasksCounter" value="59" />
+    <task id="LOCAL-00059" summary="add">
+      <created>1674298395249</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1674298395249</updated>
+    </task>
+    <option name="localTasksCounter" value="60" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
