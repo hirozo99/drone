@@ -14,9 +14,10 @@ H = 2
 
 # aruco設定
 RTSP_URL ='rtsp://192.168.42.1/live'
-os.environ['OPENCV_FFMPEG_CAPTURE_OPTIONS']='rtsp_transport;udp'
+os.environ['OPENCV_FFMPEG_CAPTURE_OPTIONS'] = 'rtsp_transport;udp'
 dict_aruco = aruco.Dictionary_get(aruco.DICT_4X4_50)
 parameters = aruco.DetectorParameters_create()
+# カメラの読込み
 cap = cv2.VideoCapture(RTSP_URL)
 
 def takeoff():
@@ -42,6 +43,7 @@ def landing():
 
 def aruco_landing():
     while True:
+        # 1フレーム毎読込み
         ret, frame = cap.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
         corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
