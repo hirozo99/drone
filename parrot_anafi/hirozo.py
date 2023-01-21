@@ -39,7 +39,7 @@ def landing():
 
 def aruco_landing():
     while True:
-        frame = cap.read()
+        ret, frame = cap.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
         corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
         # frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
@@ -49,7 +49,7 @@ def aruco_landing():
         print(list_ids)
         if list_ids[0] == 0:
             print("着陸体制に入ります！！")
-            landing()
+            # landing()
             # if list_ids[-1] == 4 and len(list_ids) == 5:
             #     print("--------------------------着陸--------------------------")
             #     break

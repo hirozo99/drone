@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="392aa905-6561-477a-b87c-246e08f576e3" name="Changes" comment="add">
+      <change afterPath="$PROJECT_DIR$/aruco_marker/new_video.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/parrot_anafi/hirozo.py" beforeDir="false" afterPath="$PROJECT_DIR$/parrot_anafi/hirozo.py" afterDir="false" />
     </list>
@@ -81,13 +82,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668156860177</updated>
-    </task>
-    <task id="LOCAL-00001" summary="コメント修正">
-      <created>1668156984270</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1668156984270</updated>
     </task>
     <task id="LOCAL-00002" summary="add">
       <created>1669272149900</created>
@@ -425,7 +419,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674128674666</updated>
     </task>
-    <option name="localTasksCounter" value="50" />
+    <task id="LOCAL-00050" summary="add">
+      <created>1674285897842</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1674285897842</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
