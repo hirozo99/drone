@@ -42,10 +42,11 @@ def aruco_landing():
         corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
         frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
         cv2.imshow('display', frame_markers)
-        list_ids = np.ravel(ids)
+        list_ids = list(np.ravel(ids))
+        list_ids.sort()
         print(list_ids)
         if list_ids[0] == 0:
-            print("着陸体制に入ります！！")
+            print("***************landing***************")
             test_landing()
             break
 
