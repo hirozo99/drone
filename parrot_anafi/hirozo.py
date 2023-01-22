@@ -42,7 +42,7 @@ def landing():
     drone.disconnect()
 
 def aruco_landing():
-    while True:
+    while cap.isOpened():
         # 1フレーム毎読込み
         ret, frame = cap.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
