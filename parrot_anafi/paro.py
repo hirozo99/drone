@@ -12,6 +12,7 @@ from olympe.messages.ardrone3.Piloting import TakeOff, Landing, moveBy
 # 変数の指定
 DRONE_IP = os.environ.get("DRONE_IP", "192.168.42.1")
 H = 7
+F = 2
 
 RTSP_URL ='rtsp://192.168.42.1/live'
 os.environ['OPENCV_FFMPEG_CAPTURE_OPTIONS']='rtsp_transport;udp'
@@ -34,6 +35,13 @@ def gain_altitude():
     drone.connect()
     print("***************gain_altitude***************")
     drone(moveBy(0, 0, -H, 0)).wait().success()
+    time.sleep(5)
+
+def forward():
+    drone = olympe.Drone(DRONE_IP)
+    drone.connect()
+    print("***************forward***************")
+    drone(moveBy(F, 0, -H, 0)).wait().success()
     time.sleep(5)
 
 def test_landing():
@@ -60,25 +68,14 @@ def aruco_landing():
                 test_landing()
                 break
     except cv2.error:
-        while True:
-            ret, frame = cap.read()
-            gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+        aruco_landing()
 
-            corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
-            frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
-            cv2.imshow('frame', frame_markers)
-            list_ids = list(np.ravel(ids))
-            list_ids.sort()
-            print(list_ids)
-            if list_ids[0] == 0:
-                print("***************landing***************")
-                test_landing()
-                break
 
 def main():
     try:
         test_takeoff()
         gain_altitude()
+        forward()
         aruco_landing()
     except KeyboardInterrupt:
         test_landing()
