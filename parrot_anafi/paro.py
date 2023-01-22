@@ -11,8 +11,8 @@ from olympe.messages.ardrone3.Piloting import TakeOff, Landing, moveBy
 
 # 変数の指定
 DRONE_IP = os.environ.get("DRONE_IP", "192.168.42.1")
-H = 3
-F = 2
+H = 6
+F = 12
 
 RTSP_URL ='rtsp://192.168.42.1/live'
 os.environ['OPENCV_FFMPEG_CAPTURE_OPTIONS']='rtsp_transport;udp'
