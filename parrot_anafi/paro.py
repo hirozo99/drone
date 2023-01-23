@@ -52,25 +52,21 @@ def test_landing():
     drone.disconnect()
 
 def aruco_landing():
-    try:
-        while True:
-            ret, frame = cap.read()
-            print(frame)
-            gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+    while True:
+        ret, frame = cap.read()
+        print(frame)
+        gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
 
-            corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
-            frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
-            cv2.imshow('frame', frame_markers)
-            list_ids = list(np.ravel(ids))
-            list_ids.sort()
-            print(list_ids)
-            if list_ids[0] == 0:
-                print("***************landing***************")
-                test_landing()
-                break
-    except cv2.error:
-        aruco_landing()
-
+        corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
+        frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
+        cv2.imshow('frame', frame_markers)
+        list_ids = list(np.ravel(ids))
+        list_ids.sort()
+        print(list_ids)
+        if list_ids[0] == 0:
+            print("***************landing***************")
+            test_landing()
+            break
 
 def main():
     try:
