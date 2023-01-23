@@ -12,7 +12,7 @@ from olympe.messages.ardrone3.Piloting import TakeOff, Landing, moveBy
 # 変数の指定
 DRONE_IP = os.environ.get("DRONE_IP", "192.168.42.1")
 H = 6
-F = 12
+F = 1
 
 RTSP_URL ='rtsp://192.168.42.1/live'
 os.environ['OPENCV_FFMPEG_CAPTURE_OPTIONS']='rtsp_transport;udp'
@@ -41,7 +41,7 @@ def forward():
     drone = olympe.Drone(DRONE_IP)
     drone.connect()
     print("***************forward***************")
-    drone(moveBy(F, 0, -H, 0)).wait().success()
+    drone(moveBy(F, 0, 0, 0)).wait().success()
     time.sleep(5)
 
 def test_landing():
@@ -55,6 +55,7 @@ def aruco_landing():
     try:
         while True:
             ret, frame = cap.read()
+            print(frame)
             gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
 
             corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
@@ -75,7 +76,7 @@ def main():
     try:
         test_takeoff()
         gain_altitude()
-        forward()
+        # forward()
         aruco_landing()
     except KeyboardInterrupt:
         test_landing()
