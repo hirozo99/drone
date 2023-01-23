@@ -25,14 +25,10 @@ parameters = aruco.DetectorParameters_create()
 cap = cv2.VideoCapture(RTSP_URL)
 
 def test_takeoff():
-    drone = olympe.Drone(DRONE_IP)
-    drone.connect()
     print("--------------------test_takeoff--------------------")
     assert drone(TakeOff()).wait().success()
 
 def gain_altitude():
-    drone = olympe.Drone(DRONE_IP)
-    drone.connect()
     print("***************gain_altitude***************")
     drone(moveBy(0, 0, -H, 0)).wait().success()
     time.sleep(5)
@@ -70,6 +66,8 @@ def aruco_landing():
 
 def main():
     try:
+        drone = olympe.Drone(DRONE_IP)
+        drone.connect()
         test_takeoff()
         gain_altitude()
         # forward()
