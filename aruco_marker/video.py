@@ -1,4 +1,5 @@
 #マーカーIDと、動画を重ねて表示する
+import time
 import cv2
 from cv2 import aruco
 import os
