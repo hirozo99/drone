@@ -50,7 +50,7 @@ def test_move(drone):
     ).wait().success()
     drone.disconnect()
 
-def aruco_landing():
+def aruco_landing(drone):
     while True:
         ret, frame = cap.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
@@ -63,7 +63,7 @@ def aruco_landing():
         print(list_ids)
         if list_ids[0] == 0:
             print("***************landing***************")
-            test_landing()
+            test_landing(drone)
             time.sleep(8)
             break
 
@@ -73,7 +73,7 @@ def main():
         drone.connect()
         test_takeoff(drone)
         test_move(drone)
-        aruco_landing()
+        aruco_landing(drone)
     except KeyboardInterrupt:
         test_landing(drone)
 
