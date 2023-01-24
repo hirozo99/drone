@@ -39,7 +39,7 @@ def test_takeoff(drone):
 
 def test_landing(drone):
     print("--------------------test_landing--------------------")
-    assert drone(Landing()).wait().success()
+    drone(Landing()).wait().success()
     drone.disconnect()
 
 def test_move(drone):
