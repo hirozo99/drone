@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="392aa905-6561-477a-b87c-246e08f576e3" name="Changes" comment="add" />
+    <list default="true" id="392aa905-6561-477a-b87c-246e08f576e3" name="Changes" comment="add">
+      <change beforePath="$PROJECT_DIR$/parrot_anafi/takeoff_aruco_landing.py" beforeDir="false" afterPath="$PROJECT_DIR$/parrot_anafi/takeoff_aruco_landing.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -79,13 +81,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668156860177</updated>
-    </task>
-    <task id="LOCAL-00035" summary="add">
-      <created>1670921148072</created>
-      <option name="number" value="00035" />
-      <option name="presentableId" value="LOCAL-00035" />
-      <option name="project" value="LOCAL" />
-      <updated>1670921148072</updated>
     </task>
     <task id="LOCAL-00036" summary="add">
       <created>1670993418040</created>
@@ -423,7 +418,14 @@
       <option name="project" value="LOCAL" />
       <updated>1674524703597</updated>
     </task>
-    <option name="localTasksCounter" value="84" />
+    <task id="LOCAL-00084" summary="add">
+      <created>1674525343591</created>
+      <option name="number" value="00084" />
+      <option name="presentableId" value="LOCAL-00084" />
+      <option name="project" value="LOCAL" />
+      <updated>1674525343591</updated>
+    </task>
+    <option name="localTasksCounter" value="85" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
