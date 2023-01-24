@@ -52,6 +52,7 @@ def test_move(drone):
     ).wait().success()
 
 def aruco_landing(drone):
+    test_takeoff(drone)
     while True:
         ret, frame = cap.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
@@ -63,7 +64,6 @@ def aruco_landing(drone):
         list_ids.sort()
         print(list_ids)
         time.sleep(0.5)
-        test_takeoff(drone)
         if list_ids[0] == 0:
             print("***************landing***************")
             test_landing(drone)
