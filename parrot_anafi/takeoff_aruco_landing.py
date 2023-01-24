@@ -50,7 +50,7 @@ def test_move(drone):
         >> FlyingStateChanged(state="hovering", _timeout=5)
     ).wait().success()
 
-def test_video():
+def aruco_landing(drone):
     while True:
         ret, frame = cap.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
@@ -58,34 +58,27 @@ def test_video():
         frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
         cv2.imshow('frame', frame_markers)
         video.write(frame)  # 保存
-        global list_ids
         list_ids = list(np.ravel(ids))
         list_ids.sort()
         print(list_ids)
+        if list_ids[0] == 0:
+            print("***************landing***************")
+            test_landing(drone)
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
-
-
-
-def aruco_landing(drone, list_ids):
-    if list_ids[0] == 0:
-        print("***************landing***************")
-        test_landing(drone)
-
-def drone_moving(drone):
-    test_takeoff(drone)
-    test_move(drone)
-    aruco_landing(drone, list_ids)
 
 def main():
     drone = olympe.Drone(DRONE_IP)
     drone.connect()
     # executor = concurrent.futures.ProcessPoolExecutor(max_workers=2)
-    thread_1 = Thread(target=test_video)
-    thread_2 = Thread(target=drone_moving, args=(drone))
+    # thread_1 = Thread(target=test_video)
+    # thread_2 = Thread(target=drone_moving, args=(drone))
     try:
-        thread_1.start()
-        thread_2.start()
+        test_takeoff(drone)
+        test_move(drone)
+        aruco_landing(drone)
+        # thread_1.start()
+        # thread_2.start()
         # executor.submit(test_video())
         # executor.submit(drone_moving(drone))
     except KeyboardInterrupt:
