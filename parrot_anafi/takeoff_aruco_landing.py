@@ -50,17 +50,17 @@ def test_move(drone):
     ).wait().success()
 
 def test_video():
-    while True:
-        ret, frame = cap.read()
-        gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-        corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
-        frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
-        cv2.imshow('frame', frame_markers)
-        video.write(frame)  # 保存
-        global list_ids
-        list_ids = list(np.ravel(ids))
-        list_ids.sort()
-        print(list_ids)
+    ret, frame = cap.read()
+    gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+    corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
+    frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
+    cv2.imshow('frame', frame_markers)
+    video.write(frame)  # 保存
+    global list_ids
+    list_ids = list(np.ravel(ids))
+    list_ids.sort()
+    print(list_ids)
+
 
 
 def aruco_landing(drone, list_ids):
@@ -70,7 +70,10 @@ def aruco_landing(drone, list_ids):
 
 def main():
     try:
-        test_video()
+        while True:
+            test_video()
+            if cv2.waitKey(1) & 0xFF == ord('q'):
+                break
         drone = olympe.Drone(DRONE_IP)
         drone.connect()
         test_takeoff(drone)
