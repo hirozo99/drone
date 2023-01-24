@@ -58,7 +58,7 @@ def aruco_landing(drone):
         corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
         frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
         cv2.imshow('frame', frame_markers)
-        video.write(frame)  # 保存
+        video.write(frame)  # 動画保存
         list_ids = list(np.ravel(ids))
         list_ids.sort()
         print(list_ids)
