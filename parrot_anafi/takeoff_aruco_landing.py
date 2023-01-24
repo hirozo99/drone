@@ -62,6 +62,8 @@ def aruco_landing(drone):
         list_ids = list(np.ravel(ids))
         list_ids.sort()
         print(list_ids)
+        time.sleep(0.5)
+        test_takeoff(drone)
         if list_ids[0] == 0:
             print("***************landing***************")
             test_landing(drone)
@@ -75,7 +77,6 @@ def main():
     try:
         drone = olympe.Drone(DRONE_IP)
         drone.connect()
-        test_takeoff(drone)
         # test_move(drone)
         aruco_landing(drone)
         # thread_1.start()
