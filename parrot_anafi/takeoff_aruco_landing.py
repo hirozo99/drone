@@ -36,6 +36,7 @@ video = cv2.VideoWriter('test1.mp4', fourcc, fps, (w, h))  # 動画の仕様（�
 def test_takeoff(drone):
     print("--------------------test_takeoff--------------------")
     assert drone(TakeOff()).wait().success()
+    time.sleep(3)
 
 
 def test_landing(drone):
@@ -68,14 +69,14 @@ def aruco_landing(drone):
             break
 
 def main():
-    drone = olympe.Drone(DRONE_IP)
-    drone.connect()
     # executor = concurrent.futures.ProcessPoolExecutor(max_workers=2)
     # thread_1 = Thread(target=test_video)
     # thread_2 = Thread(target=drone_moving, args=(drone))
     try:
+        drone = olympe.Drone(DRONE_IP)
+        drone.connect()
         test_takeoff(drone)
-        test_move(drone)
+        # test_move(drone)
         aruco_landing(drone)
         # thread_1.start()
         # thread_2.start()
