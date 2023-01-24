@@ -60,7 +60,6 @@ def aruco_landing(drone):
         list_ids = list(np.ravel(ids))
         list_ids.sort()
         print(list_ids)
-        time.sleep(1.5)
         if list_ids[0] == 0:
             print("***************landing***************")
             test_landing(drone)
