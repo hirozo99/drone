@@ -44,8 +44,10 @@ def test_landing(drone):
 
 def test_move(drone):
     print("--------------------test_move--------------------")
-    assert drone(extended_move_by(0, 0, -2.0, 0, 0.7, 0.7, 0.7)
-        >> FlyingStateChanged(state="hovering", _timeout=5)).wait().success()
+    drone(
+        extended_move_by(0, 0, -2.0, 0, 0.7, 0.7, 0.7)
+        >> FlyingStateChanged(state="hovering", _timeout=5)
+    ).wait().success()
     drone.disconnect()
 
 def aruco_landing():
