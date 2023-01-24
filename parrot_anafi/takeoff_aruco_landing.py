@@ -49,7 +49,7 @@ def test_move(drone):
         >> FlyingStateChanged(state="hovering", _timeout=5)
     ).wait().success()
 
-def video():
+def test_video():
     while True:
         ret, frame = cap.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
@@ -70,7 +70,7 @@ def aruco_landing(drone, list_ids):
 
 def main():
     try:
-        video()
+        test_video()
         drone = olympe.Drone(DRONE_IP)
         drone.connect()
         test_takeoff(drone)
