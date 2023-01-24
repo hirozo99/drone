@@ -24,30 +24,26 @@ parameters = aruco.DetectorParameters_create()
 
 cap = cv2.VideoCapture(RTSP_URL)
 
-def test_takeoff():
+def test_takeoff(drone):
     print("--------------------test_takeoff--------------------")
     assert drone(TakeOff()).wait().success()
 
-def gain_altitude():
+def gain_altitude(drone):
     print("***************gain_altitude***************")
     drone(moveBy(0, 0, -H, 0)).wait().success()
     time.sleep(5)
 
-def forward():
-    drone = olympe.Drone(DRONE_IP)
-    drone.connect()
+def forward(drone):
     print("***************forward***************")
     drone(moveBy(F, 0, 0, 0)).wait().success()
     time.sleep(5)
 
-def test_landing():
-    drone = olympe.Drone(DRONE_IP)
-    drone.connect()
+def test_landing(drone):
     print("--------------------test_landing--------------------")
     assert drone(Landing()).wait().success()
     drone.disconnect()
 
-def aruco_landing():
+def aruco_landing(drone):
     while True:
         ret, frame = cap.read()
         print(frame)
@@ -61,19 +57,19 @@ def aruco_landing():
         print(list_ids)
         if list_ids[0] == 0:
             print("***************landing***************")
-            test_landing()
+            test_landing(drone)
             break
 
 def main():
     try:
         drone = olympe.Drone(DRONE_IP)
         drone.connect()
-        test_takeoff()
-        gain_altitude()
-        # forward()
-        aruco_landing()
+        test_takeoff(drone)
+        gain_altitude(drone)
+        # forward(drone)
+        aruco_landing(drone)
     except KeyboardInterrupt:
-        test_landing()
+        test_landing(drone)
 
 if __name__ == "__main__":
     main()
