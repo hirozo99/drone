@@ -36,6 +36,7 @@ def test_move(drone, H):
         extended_move_by(0, 0, -H, 0, 0.7, 0.7, 0.7)
         >> FlyingStateChanged(state="hovering", _timeout=5)
     ).wait().success()
+    time.sleep(3)
 
 def forward(drone, F):
     print("***************forward***************")
@@ -43,6 +44,7 @@ def forward(drone, F):
         extended_move_by(F, 0, 0, 0, 2, 2, 2)
         >> FlyingStateChanged(state="hovering", _timeout=5)
     ).wait().success()
+    time.sleep(3)
 
 def test_landing(drone):
     print("--------------------test_landing--------------------")
