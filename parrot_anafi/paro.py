@@ -33,14 +33,16 @@ def test_takeoff(drone):
 def test_move(drone, H):
     print("--------------------test_move--------------------")
     drone(
-        extended_move_by(0, 0, -H, 0, 0.7, 0.7, 0.7)
+        extended_move_by(F, 0, -H, 0, 0.7, 0.7, 0.7)
         >> FlyingStateChanged(state="hovering", _timeout=5)
     ).wait().success()
 
-def forward(drone):
+def forward(drone, F):
     print("***************forward***************")
-    drone(moveBy(F, 0, 0, 0)).wait().success()
-    time.sleep(5)
+    drone(
+        extended_move_by(F, 0, 0, 0, 0.7, 0.7, 0.7)
+        >> FlyingStateChanged(state="hovering", _timeout=5)
+    ).wait().success()
 
 def test_landing(drone):
     print("--------------------test_landing--------------------")
@@ -68,7 +70,7 @@ def main():
         drone.connect()
         test_takeoff(drone)
         test_move(drone, 2)
-        # forward(drone)
+        forward(drone, 0.1)
         aruco_landing(drone)
     except KeyboardInterrupt:
         test_landing(drone)
