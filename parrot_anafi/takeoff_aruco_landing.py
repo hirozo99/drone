@@ -48,32 +48,34 @@ def test_move(drone):
         extended_move_by(0, 0, -2.0, 0, 0.7, 0.7, 0.7)
         >> FlyingStateChanged(state="hovering", _timeout=5)
     ).wait().success()
-    drone.disconnect()
 
-def aruco_landing(drone):
+def video():
     while True:
         ret, frame = cap.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
         corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
         frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
         cv2.imshow('frame', frame_markers)
-        video.write(frame) # 保存
+        video.write(frame)  # 保存
+        global list_ids
         list_ids = list(np.ravel(ids))
         list_ids.sort()
         print(list_ids)
-        if list_ids[0] == 0:
-            print("***************landing***************")
-            test_landing(drone)
-            time.sleep(8)
-            break
+
+
+def aruco_landing(drone, list_ids):
+    if list_ids[0] == 0:
+        print("***************landing***************")
+        test_landing(drone)
 
 def main():
     try:
+        video()
         drone = olympe.Drone(DRONE_IP)
         drone.connect()
         test_takeoff(drone)
         test_move(drone)
-        aruco_landing(drone)
+        aruco_landing(drone, list_ids)
     except KeyboardInterrupt:
         test_landing(drone)
 
