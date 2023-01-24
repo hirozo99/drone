@@ -58,6 +58,7 @@ def aruco_landing(drone):
             gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
         except cv2.error as e:
             continue
+
         corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
         # frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
         # cv2.imshow('frame', frame_markers)
@@ -74,8 +75,9 @@ def main():
         drone = olympe.Drone(DRONE_IP)
         drone.connect()
         test_takeoff(drone)
-        test_move(drone, 10, 2)
+        test_move(drone, 0.5, 0)
         aruco_landing(drone)
+        print("here-------------------------------------------")
     except KeyboardInterrupt:
         test_landing(drone)
 if __name__ == "__main__":
