@@ -1,6 +1,7 @@
 #マーカーIDと、動画を重ねて表示する
 import time
 from threading import Thread
+import concurrent.futures
 import cv2
 from cv2 import aruco
 import numpy as np
@@ -79,11 +80,14 @@ def drone_moving(drone):
 def main():
     drone = olympe.Drone(DRONE_IP)
     drone.connect()
-    thread_1 = Thread(target=test_video())
-    thread_2 = Thread(target=drone_moving(drone))
+    executor = concurrent.futures.ProcessPoolExecutor(max_workers=2)
+    # thread_1 = Thread(target=test_video())
+    # thread_2 = Thread(target=drone_moving(drone))
     try:
-        thread_1.start()
-        thread_2.start()
+        # thread_1.start()
+        # thread_2.start()
+        executor.submit(test_video())
+        executor.submit(drone_moving(drone))
     except KeyboardInterrupt:
         test_landing(drone)
 
