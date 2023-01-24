@@ -69,8 +69,8 @@ def main():
         drone = olympe.Drone(DRONE_IP)
         drone.connect()
         test_takeoff(drone)
-        test_move(drone, 2)
-        forward(drone, 0.1)
+        test_move(drone, 6)
+        forward(drone, 10)
         aruco_landing(drone)
     except KeyboardInterrupt:
         test_landing(drone)
