@@ -1,6 +1,6 @@
 #マーカーIDと、動画を重ねて表示する
 import time
-
+from threading import Thread
 import cv2
 from cv2 import aruco
 import numpy as np
@@ -50,16 +50,19 @@ def test_move(drone):
     ).wait().success()
 
 def test_video():
-    ret, frame = cap.read()
-    gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-    corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
-    frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
-    cv2.imshow('frame', frame_markers)
-    video.write(frame)  # 保存
-    global list_ids
-    list_ids = list(np.ravel(ids))
-    list_ids.sort()
-    print(list_ids)
+    while True:
+        ret, frame = cap.read()
+        gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+        corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
+        frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
+        cv2.imshow('frame', frame_markers)
+        video.write(frame)  # 保存
+        global list_ids
+        list_ids = list(np.ravel(ids))
+        list_ids.sort()
+        print(list_ids)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
 
 
 
@@ -68,17 +71,19 @@ def aruco_landing(drone, list_ids):
         print("***************landing***************")
         test_landing(drone)
 
+def drone_moving(drone):
+    test_takeoff(drone)
+    test_move(drone)
+    aruco_landing(drone, list_ids)
+
 def main():
+    drone = olympe.Drone(DRONE_IP)
+    drone.connect()
+    thread_1 = Thread(target=test_video())
+    thread_2 = Thread(target=drone_moving(drone))
     try:
-        while True:
-            test_video()
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
-        drone = olympe.Drone(DRONE_IP)
-        drone.connect()
-        test_takeoff(drone)
-        test_move(drone)
-        aruco_landing(drone, list_ids)
+        thread_1.start()
+        thread_2.start()
     except KeyboardInterrupt:
         test_landing(drone)
 
