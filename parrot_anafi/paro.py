@@ -8,6 +8,8 @@ import time
 import olympe
 import os
 from olympe.messages.ardrone3.Piloting import TakeOff, Landing, moveBy
+from olympe.messages.ardrone3.PilotingState import FlyingStateChanged
+from olympe.messages.move import extended_move_by
 
 # 変数の指定
 DRONE_IP = os.environ.get("DRONE_IP", "192.168.42.1")
@@ -28,10 +30,12 @@ def test_takeoff(drone):
     print("--------------------test_takeoff--------------------")
     assert drone(TakeOff()).wait().success()
 
-def gain_altitude(drone):
-    print("***************gain_altitude***************")
-    drone(moveBy(0, 0, -H, 0)).wait().success()
-    time.sleep(5)
+def test_move(drone):
+    print("--------------------test_move--------------------")
+    drone(
+        extended_move_by(0, 0, -2.0, 0, 0.7, 0.7, 0.7)
+        >> FlyingStateChanged(state="hovering", _timeout=5)
+    ).wait().success()
 
 def forward(drone):
     print("***************forward***************")
@@ -63,7 +67,7 @@ def main():
         drone = olympe.Drone(DRONE_IP)
         drone.connect()
         test_takeoff(drone)
-        # gain_altitude(drone)
+        test_move(drone)
         # forward(drone)
         aruco_landing(drone)
     except KeyboardInterrupt:
