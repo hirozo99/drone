@@ -53,7 +53,11 @@ def test_landing(drone):
 def aruco_landing(drone):
     while True:
         ret, frame = cap.read()
-        gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+
+        try:
+            gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+        except cv2.error as e:
+            continue
         corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
         # frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
         # cv2.imshow('frame', frame_markers)
@@ -74,6 +78,5 @@ def main():
         aruco_landing(drone)
     except KeyboardInterrupt:
         test_landing(drone)
-
 if __name__ == "__main__":
     main()
