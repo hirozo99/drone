@@ -71,7 +71,7 @@ def main():
         drone.connect()
         test_takeoff(drone)
         test_move(drone, 2)
-        # forward(drone, 0.2)
+        forward(drone, 0.2)
         aruco_landing(drone)
     except KeyboardInterrupt:
         test_landing(drone)
