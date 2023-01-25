@@ -68,7 +68,7 @@ if __name__ == "__main__" :
     cameraID = 0
     cam0_mark_search = MarkSearch(cameraID)
 
-    markID = 1
+    markID = 0
 
     try:
         while True:

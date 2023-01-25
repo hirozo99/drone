@@ -26,12 +26,14 @@ try:
         ret, frame = cap.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
         corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
-        # frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
-        # cv2.imshow('frame', frame_markers)
+        frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
+        cv2.imshow('frame', frame_markers)
         # video.write(frame)
+        print(corners)
         list_ids = list(np.ravel(ids))
         list_ids.sort()
         print(list_ids)
+
         if list_ids[0] == 0:
             print("着陸体制に入ります！！")
             if list_ids[-1] == 4 and len(list_ids) == 5:

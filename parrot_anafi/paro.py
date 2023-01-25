@@ -53,7 +53,6 @@ def test_landing(drone):
 def aruco_landing(drone):
     while True:
         ret, frame = cap.read()
-
         try:
             gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
         except cv2.error as e:
@@ -75,7 +74,7 @@ def main():
         drone = olympe.Drone(DRONE_IP)
         drone.connect()
         test_takeoff(drone)
-        test_move(drone, 0.5, 0)
+        test_move(drone, 10, 4)
         aruco_landing(drone)
         print("here-------------------------------------------")
     except KeyboardInterrupt:
