@@ -5,12 +5,12 @@ from cv2 import aruco
 import os
 import numpy as np
 
-# parrot
-import olympe
-import os
-from olympe.messages.ardrone3.Piloting import TakeOff, Landing, moveBy
-from olympe.messages.ardrone3.PilotingState import FlyingStateChanged
-from olympe.messages.move import extended_move_by
+# # parrot
+# import olympe
+# import os
+# from olympe.messages.ardrone3.Piloting import TakeOff, Landing, moveBy
+# from olympe.messages.ardrone3.PilotingState import FlyingStateChanged
+# from olympe.messages.move import extended_move_by
 
 RTSP_URL ='rtsp://192.168.42.1/live'
 os.environ['OPENCV_FFMPEG_CAPTURE_OPTIONS']='rtsp_transport;udp'
@@ -22,7 +22,7 @@ parameters = aruco.DetectorParameters_create()
 cap = cv2.VideoCapture(RTSP_URL)
 
 # 変数の指定
-DRONE_IP = os.environ.get("DRONE_IP", "192.168.42.1")
+# DRONE_IP = os.environ.get("DRONE_IP", "192.168.42.1")
 
 # 動画ファイル保存用の設定
 fps = int(cap.get(cv2.CAP_PROP_FPS))                    # カメラのFPSを取得
@@ -32,13 +32,13 @@ fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')        # 動画保存時のf
 video = cv2.VideoWriter('video.mp4', fourcc, fps, (w, h))  # 動画の仕様（ファイル名、fourcc, FPS, サイズ）
 
 
-def test_takeoff():
-    drone = olympe.Drone(DRONE_IP)
-    drone.connect()
-    time.sleep(2)
-    print("--------------------test_takeoff--------------------")
-    assert drone(TakeOff()).wait().success()
-    time.sleep(3)
+# def test_takeoff():
+#     drone = olympe.Drone(DRONE_IP)
+#     drone.connect()
+#     time.sleep(2)
+#     print("--------------------test_takeoff--------------------")
+#     assert drone(TakeOff()).wait().success()
+#     time.sleep(3)
 
 def aruco():
     try:
