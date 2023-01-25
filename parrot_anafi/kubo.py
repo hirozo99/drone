@@ -70,17 +70,17 @@ def main():
             else:
                 b += 1
                 print(str(b) + "+++++++++++")
-            # # video.write(frame)
-            # print(corners)
-            # list_ids = list(np.ravel(ids))
-            # list_ids.sort()
-            # print(list_ids)
-            #
-            # if list_ids[0] == 0:
-            #     print("着陸体制に入ります！！")
-            #     if list_ids[-1] == 4 and len(list_ids) == 5:
-            #         print("--------------------------着陸--------------------------")
-            #         break
+            # video.write(frame)
+            print(corners)
+            list_ids = list(np.ravel(ids))
+            list_ids.sort()
+            print(list_ids)
+
+            if list_ids[0] == 0:
+                print("着陸体制に入ります！！")
+                if list_ids[-1] == 4 and len(list_ids) == 5:
+                    print("--------------------------着陸--------------------------")
+                    break
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
         cv2.destroyWindow('frame')
