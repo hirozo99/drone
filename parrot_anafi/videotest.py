@@ -36,7 +36,6 @@ def aruco_landing():
         list_ids = list(np.ravel(ids))
         list_ids.sort()
         print(list_ids)
-        time.sleep(0.5)
         if list_ids[0] == 0:
             print("着陸体制に入ります！！")
             break
@@ -53,8 +52,16 @@ def aruco_landing():
 #     cap.release()
 
 def main():
-    aruco_landing()
-    print("here-------------------------------------------")
+    # aruco_landing()
+    while True:
+        ret, frame = cap.read()
+        # time.sleep(1)
+        # if ret==True:
+        cv2.imshow('frame', frame)
+        # else:
+        #     print("here-------------------------------------------")
+        # time.sleep(0.5)
+
 
 if __name__ == "__main__":
     main()
