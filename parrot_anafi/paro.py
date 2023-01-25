@@ -62,7 +62,7 @@ def aruco_landing(drone):
             list_ids.sort()
             print(list_ids)
             if list_ids[0] == 0:
-                print("***************landing***************")
+                print("**********************landing**********************")
                 test_landing(drone)
                 break
         except cv2.error as e:
