@@ -23,29 +23,29 @@ video = cv2.VideoWriter('video.mp4', fourcc, fps, (w, h))  # 動画の仕様（�
 
 def aruco_landing():
     while True:
+        time.sleep(1)
         ret, frame = cap.read()
-        try:
-            gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
-            corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
-            frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
-            cv2.imshow('frame', frame_markers)
-            # video.write(frame)
-            print(corners)
-            list_ids = list(np.ravel(ids))
-            list_ids.sort()
-            print(list_ids)
-            time.sleep(0.5)
-            if list_ids[0] == 0:
-                print("着陸体制に入ります！！")
-                break
-            # if list_ids[-1] == 4 and len(list_ids) == 5:
-            #     print("--------------------------着陸--------------------------")
-            #     break
-            if cv2.waitKey(1) & 0xFF == ord('q'):
-                break
-        except cv2.error as e:
-            time.sleep(0.5)
-            continue
+        time.sleep(1)
+
+        gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
+        corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
+        frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
+        cv2.imshow('frame', frame_markers)
+        # video.write(frame)
+        print(corners)
+        list_ids = list(np.ravel(ids))
+        list_ids.sort()
+        print(list_ids)
+        time.sleep(0.5)
+        if list_ids[0] == 0:
+            print("着陸体制に入ります！！")
+            break
+        # if list_ids[-1] == 4 and len(list_ids) == 5:
+        #     print("--------------------------着陸--------------------------")
+        #     break
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
+
 #     cv2.destroyWindow('frame')
 #     cap.release()
 # except KeyboardInterrupt:
