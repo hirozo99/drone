@@ -66,7 +66,7 @@ def main():
             if ret == True:
                 a += 1
                 print(a)
-                cv2.imshow('frame', frame) #frame_markers
+                cv2.imshow('frame', frame_markers) #frame_markers
             else:
                 b += 1
                 print(str(b) + "+++++++++++")
