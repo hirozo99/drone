@@ -40,9 +40,8 @@ def test_takeoff(drone):
 
 def test_move(drone, F, H):
     print("--------------------test_move--------------------")
-    drone(
+    assert drone(
         extended_move_by(F, 0, -H, 0, 0.7, 0.7, 0.7)
-        >> FlyingStateChanged(state="hovering", _timeout=5)
     ).wait().success()
 
 def main():
