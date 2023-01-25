@@ -45,6 +45,8 @@ def test_move(drone, F, H):
     ).wait().success()
 
 def main():
+    a = 0
+    b = 0
     drone = olympe.Drone(DRONE_IP)
     drone.connect()
     time.sleep(1)
@@ -60,9 +62,12 @@ def main():
             # corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
             # frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
             if ret == True:
+                a += 1
+                print(a)
                 cv2.imshow('frame', frame) #frame_markers
             else:
-                print("*************************")
+                b += 1
+                print(str(b) + "+++++++++++")
             # # video.write(frame)
             # print(corners)
             # list_ids = list(np.ravel(ids))
