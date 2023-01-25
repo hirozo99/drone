@@ -38,12 +38,11 @@ def test_move(drone, F, H):
         >> FlyingStateChanged(state="hovering", _timeout=5)
     ).wait().success()
 
-# def forward(drone, F):
-#     print("***************forward***************")
-#     drone(
-#         extended_move_by(F, 0, 0, 0, 0.3, 0.3, 0.3)
-#         >> FlyingStateChanged(state="hovering", _timeout=5)
-#     ).wait().success()
+def go(distance):
+    os.system("python3 go.py -m {}".format(distance))
+
+def height(z):
+    os.system("python3 height.py -m {}".format(z))
 
 def test_landing(drone):
     print("--------------------test_landing--------------------")
@@ -75,9 +74,9 @@ def main():
         drone = olympe.Drone(DRONE_IP)
         drone.connect()
         test_takeoff(drone)
-        test_move(drone, 0, 2)
-        test_move(drone, 1, 0)
-        time.sleep(3)
+        # test_move(drone, 0, 2)
+        height(2)
+        go(1)
         aruco_landing(drone)
         print("here-------------------------------------------")
     except KeyboardInterrupt:
