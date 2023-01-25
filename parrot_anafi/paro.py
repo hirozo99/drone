@@ -80,7 +80,7 @@ def main():
         time.sleep(1)
         # height(2)
         # go(1)
-        aruco_landing(drone)
+        # aruco_landing(drone)
         print("here-------------------------------------------")
     except KeyboardInterrupt:
         test_landing(drone)
