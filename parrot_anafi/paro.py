@@ -77,6 +77,7 @@ def main():
         test_takeoff(drone)
         test_move(drone, 0, 2)
         test_move(drone, 1, 0)
+        time.sleep(3)
         aruco_landing(drone)
         print("here-------------------------------------------")
     except KeyboardInterrupt:
