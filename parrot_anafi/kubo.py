@@ -57,9 +57,9 @@ def main():
 
     try:
         while True:
-            time.sleep(1)
+            # time.sleep(1)
             ret, frame = cap.read()
-            time.sleep(1)
+            # time.sleep(1)
             # gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
             # corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
             # frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
