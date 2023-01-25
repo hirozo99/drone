@@ -60,12 +60,13 @@ def aruco_landing(drone):
             list_ids = list(np.ravel(ids))
             list_ids.sort()
             print(list_ids)
-            time.sleep(1)
+            time.sleep(0.5)
             if list_ids[0] == 0:
                 print("**********************landing**********************")
                 test_landing(drone)
                 break
         except cv2.error as e:
+            time.sleep(0.5)
             continue
 
 
