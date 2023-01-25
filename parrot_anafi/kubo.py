@@ -32,16 +32,27 @@ fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')        # 動画保存時のf
 video = cv2.VideoWriter('video.mp4', fourcc, fps, (w, h))  # 動画の仕様（ファイル名、fourcc, FPS, サイズ）
 
 
-def test_takeoff():
-    drone = olympe.Drone(DRONE_IP)
-    drone.connect()
+def test_takeoff(drone):
     time.sleep(2)
     print("--------------------test_takeoff--------------------")
     assert drone(TakeOff()).wait().success()
     time.sleep(3)
 
+def test_move(drone, F, H):
+    print("--------------------test_move--------------------")
+    drone(
+        extended_move_by(F, 0, -H, 0, 0.7, 0.7, 0.7)
+        >> FlyingStateChanged(state="hovering", _timeout=5)
+    ).wait().success()
+
 def main():
-    test_takeoff()
+    drone = olympe.Drone(DRONE_IP)
+    drone.connect()
+    time.sleep(1)
+    test_takeoff(drone)
+    time.sleep(1)
+    test_move(drone, 1, 0)
+    time.sleep(1)
     try:
         while True:
             ret, frame = cap.read()
