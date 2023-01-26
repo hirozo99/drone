@@ -73,7 +73,7 @@ def main():
             print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
             # time.sleep(1)
             ret, frame = cap.read()
-            # time.sleep(1)
+            time.sleep(0.1)
             if ret == True:
                 print("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb")
                 gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
