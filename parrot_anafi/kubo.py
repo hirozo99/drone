@@ -73,11 +73,12 @@ def main():
             print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
             # time.sleep(1)
             ret, frame = cap.read()
-            time.sleep(0.1)
+            time.sleep(5)
             gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
             corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
             frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
             cv2.imshow('frame', frame_markers)
+            time.sleep(5)
             # if ret == True:
             #     print("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb")
             #     gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)

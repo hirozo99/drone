@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="392aa905-6561-477a-b87c-246e08f576e3" name="Changes" comment="add">
-      <change beforePath="$PROJECT_DIR$/parrot_anafi/takeoff_aruco_landing.py" beforeDir="false" afterPath="$PROJECT_DIR$/parrot_anafi/takeoff_aruco_landing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/parrot_anafi/kubo.py" beforeDir="false" afterPath="$PROJECT_DIR$/parrot_anafi/kubo.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -81,20 +81,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668156860177</updated>
-    </task>
-    <task id="LOCAL-00123" summary="add">
-      <created>1674646569042</created>
-      <option name="number" value="00123" />
-      <option name="presentableId" value="LOCAL-00123" />
-      <option name="project" value="LOCAL" />
-      <updated>1674646569042</updated>
-    </task>
-    <task id="LOCAL-00124" summary="add">
-      <created>1674646874714</created>
-      <option name="number" value="00124" />
-      <option name="presentableId" value="LOCAL-00124" />
-      <option name="project" value="LOCAL" />
-      <updated>1674646874714</updated>
     </task>
     <task id="LOCAL-00125" summary="add">
       <created>1674646990486</created>
@@ -425,7 +411,21 @@
       <option name="project" value="LOCAL" />
       <updated>1674711423794</updated>
     </task>
-    <option name="localTasksCounter" value="172" />
+    <task id="LOCAL-00172" summary="add">
+      <created>1674711649395</created>
+      <option name="number" value="00172" />
+      <option name="presentableId" value="LOCAL-00172" />
+      <option name="project" value="LOCAL" />
+      <updated>1674711649395</updated>
+    </task>
+    <task id="LOCAL-00173" summary="add">
+      <created>1674711815346</created>
+      <option name="number" value="00173" />
+      <option name="presentableId" value="LOCAL-00173" />
+      <option name="project" value="LOCAL" />
+      <updated>1674711815346</updated>
+    </task>
+    <option name="localTasksCounter" value="174" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
