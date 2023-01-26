@@ -21,5 +21,7 @@ def move(m):
         extended_move_by(m, 0, 0, 0, 0.7, 0.7, 0.7)
         >> FlyingStateChanged(state="hovering", _timeout=3)
     ).wait().success()
+    time.sleep(3)
+
 if __name__ == '__main__':
     move(args.distance)
