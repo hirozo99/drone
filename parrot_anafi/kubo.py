@@ -56,7 +56,7 @@ def main():
     time.sleep(1)
     test_takeoff(drone)
     time.sleep(1)
-    height(1.5)
+    height(1)
     time.sleep(1)
     go(1)
     time.sleep(1)

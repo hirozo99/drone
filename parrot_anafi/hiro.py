@@ -6,11 +6,11 @@ import os
 import numpy as np
 
 # parrot
-# import olympe
-# import os
-# from olympe.messages.ardrone3.Piloting import TakeOff, Landing, moveBy
-# from olympe.messages.ardrone3.PilotingState import FlyingStateChanged
-# from olympe.messages.move import extended_move_by
+import olympe
+import os
+from olympe.messages.ardrone3.Piloting import TakeOff, Landing, moveBy
+from olympe.messages.ardrone3.PilotingState import FlyingStateChanged
+from olympe.messages.move import extended_move_by
 
 # 変数の指定
 DRONE_IP = os.environ.get("DRONE_IP", "192.168.42.1")
@@ -23,23 +23,23 @@ dict_aruco = aruco.Dictionary_get(aruco.DICT_4X4_50)
 parameters = aruco.DetectorParameters_create()
 cap = cv2.VideoCapture(RTSP_URL)
 
-# def test_takeoff(drone):
-#     print("--------------------test_takeoff--------------------")
-#     assert drone(TakeOff()).wait().success()
-#     time.sleep(5)
-#
-# def test_move(drone, F, H):
-#     print("--------------------test_move--------------------")
-#     drone(
-#         extended_move_by(F, 0, -H, 0, 0.7, 0.7, 0.7)
-#         >> FlyingStateChanged(state="hovering", _timeout=5)
-#     ).wait().success()
-#     time.sleep(5)
-#
-# def test_landing(drone):
-#     print("--------------------test_landing--------------------")
-#     drone(Landing()).wait().success()
-#     drone.disconnect()
+def test_takeoff(drone):
+    print("--------------------test_takeoff--------------------")
+    assert drone(TakeOff()).wait().success()
+    time.sleep(5)
+
+def test_move(drone, F, H):
+    print("--------------------test_move--------------------")
+    drone(
+        extended_move_by(F, 0, -H, 0, 0.7, 0.7, 0.7)
+        >> FlyingStateChanged(state="hovering", _timeout=5)
+    ).wait().success()
+    time.sleep(5)
+
+def test_landing(drone):
+    print("--------------------test_landing--------------------")
+    drone(Landing()).wait().success()
+    drone.disconnect()
 
 def video_recognize():
     # drone = olympe.Drone(DRONE_IP)
