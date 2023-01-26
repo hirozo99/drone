@@ -33,7 +33,6 @@ video = cv2.VideoWriter('video.mp4', fourcc, fps, (w, h))  # 動画の仕様（�
 
 
 def test_takeoff(drone):
-    time.sleep(2)
     print("--------------------test_takeoff--------------------")
     assert drone(TakeOff()).wait().success()
     time.sleep(3)
@@ -66,19 +65,17 @@ def main():
     # time.sleep(1)
     # test_move(drone, 1, 0)
     # time.sleep(1)
-    # test_move(drone, 0, 0)
-    # time.sleep(1)
     try:
         while True:
             print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
             # time.sleep(1)
             ret, frame = cap.read()
-            time.sleep(5)
+            # time.sleep(5)
             gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
             corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
             frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
             cv2.imshow('frame', frame_markers)
-            time.sleep(5)
+            # time.sleep(5)
             # if ret == True:
             #     print("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb")
             #     gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
@@ -100,7 +97,7 @@ def main():
         cv2.destroyWindow('frame')
         cap.release()
     except KeyboardInterrupt:
-        test_landing(drone)
+        # test_landing(drone)
         cv2.destroyWindow('frame')
         cap.release()
 
