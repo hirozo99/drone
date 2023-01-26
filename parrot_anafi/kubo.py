@@ -73,12 +73,7 @@ def main():
                 gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
                 corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
                 frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
-                a += 1
-                print(a)
                 cv2.imshow('frame', frame_markers) #frame_markers
-            else:
-                b += 1
-                print(str(b) + "+++++++++++")
             # video.write(frame)
             print(corners)
             list_ids = list(np.ravel(ids))
