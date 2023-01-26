@@ -42,6 +42,11 @@ def test_landing(drone):
     drone.disconnect()
 
 def video_recognize():
+    drone = olympe.Drone(DRONE_IP)
+    drone.connect()
+    test_takeoff(drone)
+    test_move(drone, 0, 1)
+    time.sleep(1)
     while True:
         ret, frame = cap.read()
         if ret:
@@ -78,12 +83,7 @@ def video_recognize():
 
 
 def main():
-    drone = olympe.Drone(DRONE_IP)
-    drone.connect()
     try:
-        test_takeoff(drone)
-        test_move(drone, 0, 1)
-        time.sleep(1)
         video_recognize()
     except KeyboardInterrupt:
         test_landing(drone)

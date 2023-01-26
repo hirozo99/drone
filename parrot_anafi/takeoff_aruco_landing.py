@@ -47,7 +47,7 @@ def test_landing(drone):
 def test_move(drone):
     print("--------------------test_move--------------------")
     drone(
-        extended_move_by(0, 0, -2.0, 0, 0.7, 0.7, 0.7)
+        extended_move_by(0, 0, -1, 0, 0.7, 0.7, 0.7)
         >> FlyingStateChanged(state="hovering", _timeout=5)
     ).wait().success()
 
@@ -59,7 +59,7 @@ def aruco_landing(drone):
         corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
         # frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
         # cv2.imshow('frame', frame_markers)
-        video.write(frame)  # 動画保存
+        # video.write(frame)  # 動画保存
         list_ids = list(np.ravel(ids))
         list_ids.sort()
         print(list_ids)
@@ -77,7 +77,7 @@ def main():
     try:
         drone = olympe.Drone(DRONE_IP)
         drone.connect()
-        # test_move(drone)
+        test_move(drone)
         aruco_landing(drone)
         # thread_1.start()
         # thread_2.start()
