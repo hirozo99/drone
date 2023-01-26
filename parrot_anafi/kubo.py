@@ -61,8 +61,8 @@ def main():
     time.sleep(1)
     test_takeoff(drone)
     time.sleep(1)
-    # test_move(drone, 0, 1)
-    # time.sleep(1)
+    test_move(drone, 0, 1)
+    time.sleep(1)
     # test_move(drone, 1, 0)
     # time.sleep(1)
     try:
