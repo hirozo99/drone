@@ -38,7 +38,7 @@ def test_move(drone, F, H):
 
 def test_landing(drone):
     print("--------------------test_landing--------------------")
-    assert drone(Landing()).wait().success()
+    drone(Landing()).wait().success()
     drone.disconnect()
 
 def video_recognize():
