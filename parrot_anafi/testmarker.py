@@ -45,7 +45,7 @@ def video_recognize():
     drone = olympe.Drone(DRONE_IP)
     drone.connect()
     test_takeoff(drone)
-    test_move(drone, 0, 1)
+    test_move(drone, 0, 1.1)
     time.sleep(1)
     while True:
         ret, frame = cap.read()
