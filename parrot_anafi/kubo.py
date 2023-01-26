@@ -61,8 +61,8 @@ def main():
     time.sleep(1)
     test_takeoff(drone)
     time.sleep(1)
-    test_move(drone, 0, 1)
-    time.sleep(1)
+    # test_move(drone, 0, 1)
+    # time.sleep(1)
     # test_move(drone, 1, 0)
     # time.sleep(1)
     try:
@@ -89,6 +89,7 @@ def main():
 
             if list_ids[0] == 0:
                 print("着陸体制に入ります！！")
+                # test_landing(drone)
                 if list_ids[-1] == 4 and len(list_ids) == 5:
                     print("--------------------------着陸--------------------------")
                     break
