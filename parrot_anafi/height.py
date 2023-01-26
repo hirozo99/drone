@@ -16,7 +16,7 @@ args = parser.parse_args()
 def move(m):
     drone = olympe.Drone(DRONE_IP)
     drone.connect()
-    print("--------------------test_move--------------------")
+    print("--------------------height--------------------")
     drone(
         extended_move_by(0, 0, m, 0, 0.7, 0.7, 0.7)
         >> FlyingStateChanged(state="hovering", _timeout=3)
