@@ -38,6 +38,12 @@ def test_takeoff(drone):
     assert drone(TakeOff()).wait().success()
     time.sleep(3)
 
+def go(distance):
+    os.system("python3 go.py -m {}".format(distance))
+
+def height(z):
+    os.system("python3 height.py -m {}".format(z))
+
 def test_move(drone, F, H):
     print("--------------------test_move--------------------")
     assert drone(
@@ -45,13 +51,14 @@ def test_move(drone, F, H):
     ).wait().success()
 
 def main():
-    a = 0
-    b = 0
     drone = olympe.Drone(DRONE_IP)
     drone.connect()
     time.sleep(1)
     test_takeoff(drone)
     time.sleep(1)
+    height(1.5)
+    time.sleep(1)
+    go(1)
     # test_move(drone, 0, 0)
     # time.sleep(1)
 
