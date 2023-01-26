@@ -27,14 +27,20 @@ def test_landing(drone):
     drone(Landing()).wait().success()
     drone.disconnect()
 
+def go(distance):
+    os.system("python3 go.py -m {}".format(distance))
+
+def height(z):
+    os.system("python3 height.py -m {}".format(z))
+
 def main():
     drone = olympe.Drone(DRONE_IP)
     drone.connect()
     test_takeoff(drone)
     time.sleep(1)
-    test_move(drone, 0, 1)
+    height(1)
     time.sleep(1)
-    test_move(drone, 1, 0)
+    go(1)
     time.sleep(1)
     test_landing(drone)
 
