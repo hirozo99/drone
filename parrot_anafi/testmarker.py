@@ -83,6 +83,8 @@ def video_recognize():
 
 
 def main():
+    drone = olympe.Drone(DRONE_IP)
+    drone.connect()
     try:
         video_recognize()
     except KeyboardInterrupt:
