@@ -54,6 +54,8 @@ def test_move(drone):
 def aruco_landing(drone):
     test_takeoff(drone)
     time.sleep(1)
+    test_move(drone)
+    time.sleep(1)
     while True:
         ret, frame = cap.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
