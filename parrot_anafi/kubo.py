@@ -97,7 +97,7 @@ def main():
         cv2.destroyWindow('frame')
         cap.release()
     except KeyboardInterrupt:
-        # test_landing(drone)
+        test_landing(drone)
         cv2.destroyWindow('frame')
         cap.release()
 
