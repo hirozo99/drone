@@ -59,6 +59,8 @@ def main():
     height(1.5)
     time.sleep(1)
     go(1)
+    time.sleep(1)
+
     # test_move(drone, 0, 0)
     # time.sleep(1)
 
