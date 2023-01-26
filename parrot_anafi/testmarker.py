@@ -48,36 +48,38 @@ def video_recognize():
     test_move(drone, 0, 1.1)
     time.sleep(1)
     while True:
+        time.sleep(1)
         ret, frame = cap.read()
+        time.sleep(1)
         if ret:
             gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
             corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
             # frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
             # cv2.imshow('frame', frame_markers)
             # video.write(frame)
-        list_ids = list(np.ravel(ids))
-        list_ids.sort()
-        print(list_ids)
+            list_ids = list(np.ravel(ids))
+            list_ids.sort()
+            print(list_ids)
 
-        if list_ids[0] == 0:
-            index = np.where(ids == 0)[0][0]  # num_id が格納されているindexを抽出
-            cornerUL = corners[index][0][0]
-            cornerUR = corners[index][0][1]
-            cornerBR = corners[index][0][2]
-            cornerBL = corners[index][0][3]
+            if list_ids[0] == 0:
+                index = np.where(ids == 0)[0][0]  # num_id が格納されているindexを抽出
+                cornerUL = corners[index][0][0]
+                cornerUR = corners[index][0][1]
+                cornerBR = corners[index][0][2]
+                cornerBL = corners[index][0][3]
 
-            center = [(cornerUL[0] + cornerBR[0]) / 2, (cornerUL[1] + cornerBR[1]) / 2]
+                center = [(cornerUL[0] + cornerBR[0]) / 2, (cornerUL[1] + cornerBR[1]) / 2]
 
-            print('左上 : {}'.format(cornerUL))
-            print('右上 : {}'.format(cornerUR))
-            print('右下 : {}'.format(cornerBR))
-            print('左下 : {}'.format(cornerBL))
-            print('中心 : {}'.format(center))
-            time.sleep(1)
-            # print("着陸体制に入ります！！")
-            if list_ids[-1] == 4 and len(list_ids) == 5:
-                print("--------------------------着陸--------------------------")
-                break
+                print('左上 : {}'.format(cornerUL))
+                print('右上 : {}'.format(cornerUR))
+                print('右下 : {}'.format(cornerBR))
+                print('左下 : {}'.format(cornerBL))
+                print('中心 : {}'.format(center))
+                time.sleep(1)
+                # print("着陸体制に入ります！！")
+                if list_ids[-1] == 4 and len(list_ids) == 5:
+                    print("--------------------------着陸--------------------------")
+                    break
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
