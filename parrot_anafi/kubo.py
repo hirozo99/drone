@@ -50,6 +50,12 @@ def test_move(drone, F, H):
         extended_move_by(F, 0, -H, 0, 0.7, 0.7, 0.7)
     ).wait().success()
 
+def test_landing(drone):
+    print("--------------------test_landing--------------------")
+    drone(Landing()).wait().success()
+    drone.disconnect()
+
+
 def main():
     drone = olympe.Drone(DRONE_IP)
     drone.connect()
@@ -64,16 +70,17 @@ def main():
     # time.sleep(1)
     try:
         while True:
+            print("aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa")
             # time.sleep(1)
             ret, frame = cap.read()
             # time.sleep(1)
             if ret == True:
+                print("bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb")
                 gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
                 corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
                 frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
                 cv2.imshow('frame', frame_markers) #frame_markers
             # video.write(frame)
-            print(corners)
             list_ids = list(np.ravel(ids))
             list_ids.sort()
             print(list_ids)
@@ -88,6 +95,7 @@ def main():
         cv2.destroyWindow('frame')
         cap.release()
     except KeyboardInterrupt:
+        test_landing(drone)
         cv2.destroyWindow('frame')
         cap.release()
 
