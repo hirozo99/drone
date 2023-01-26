@@ -67,7 +67,6 @@ def aruco_landing(drone):
                 test_landing(drone)
                 break
         except cv2.error as e:
-            time.sleep(0.5)
             continue
 
 
