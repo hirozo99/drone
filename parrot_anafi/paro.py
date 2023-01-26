@@ -50,6 +50,7 @@ def test_landing(drone):
     drone.disconnect()
 
 def aruco_landing(drone):
+    a = 0
     drone = olympe.Drone(DRONE_IP)
     drone.connect()
     test_takeoff(drone)
@@ -57,8 +58,10 @@ def aruco_landing(drone):
     while True:
         ret, frame = cap.read()
         try:
-            height(1)
-            go(1)
+            if a == 0:
+                a += 1
+                height(1)
+                go(1)
             gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
             corners, ids, rejectedImgPoints = aruco.detectMarkers(gray, dict_aruco, parameters=parameters)
             # frame_markers = aruco.drawDetectedMarkers(frame.copy(), corners, ids)
