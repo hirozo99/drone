@@ -53,6 +53,7 @@ def test_move(drone):
 
 def aruco_landing(drone):
     test_takeoff(drone)
+    time.sleep(1)
     while True:
         ret, frame = cap.read()
         gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
@@ -71,18 +72,10 @@ def aruco_landing(drone):
             break
 
 def main():
-    # executor = concurrent.futures.ProcessPoolExecutor(max_workers=2)
-    # thread_1 = Thread(target=test_video)
-    # thread_2 = Thread(target=drone_moving, args=(drone))
     try:
         drone = olympe.Drone(DRONE_IP)
         drone.connect()
-        test_move(drone)
         aruco_landing(drone)
-        # thread_1.start()
-        # thread_2.start()
-        # executor.submit(test_video())
-        # executor.submit(drone_moving(drone))
     except KeyboardInterrupt:
         test_landing(drone)
 
