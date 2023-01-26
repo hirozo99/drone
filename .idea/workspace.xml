@@ -5,6 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="392aa905-6561-477a-b87c-246e08f576e3" name="Changes" comment="add">
+      <change afterPath="$PROJECT_DIR$/parrot_anafi/p.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -81,20 +82,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1668156860177</updated>
-    </task>
-    <task id="LOCAL-00111" summary="add">
-      <created>1674550346816</created>
-      <option name="number" value="00111" />
-      <option name="presentableId" value="LOCAL-00111" />
-      <option name="project" value="LOCAL" />
-      <updated>1674550346816</updated>
-    </task>
-    <task id="LOCAL-00112" summary="add">
-      <created>1674620606889</created>
-      <option name="number" value="00112" />
-      <option name="presentableId" value="LOCAL-00112" />
-      <option name="project" value="LOCAL" />
-      <updated>1674620606889</updated>
     </task>
     <task id="LOCAL-00113" summary="add">
       <created>1674631563251</created>
@@ -425,7 +412,21 @@
       <option name="project" value="LOCAL" />
       <updated>1674702796045</updated>
     </task>
-    <option name="localTasksCounter" value="160" />
+    <task id="LOCAL-00160" summary="add">
+      <created>1674704958314</created>
+      <option name="number" value="00160" />
+      <option name="presentableId" value="LOCAL-00160" />
+      <option name="project" value="LOCAL" />
+      <updated>1674704958314</updated>
+    </task>
+    <task id="LOCAL-00161" summary="add">
+      <created>1674705288798</created>
+      <option name="number" value="00161" />
+      <option name="presentableId" value="LOCAL-00161" />
+      <option name="project" value="LOCAL" />
+      <updated>1674705288798</updated>
+    </task>
+    <option name="localTasksCounter" value="162" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
