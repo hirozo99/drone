@@ -47,11 +47,13 @@ def test_landing(drone):
 def test_move(drone):
     print("--------------------test_move--------------------")
     drone(
-        extended_move_by(0, 0, -2, 0, 0.7, 0.7, 0.7)
+        extended_move_by(0, 0, -0.9, 0, 0.7, 0.7, 0.7)
         >> FlyingStateChanged(state="hovering", _timeout=5)
     ).wait().success()
 
 def aruco_landing(drone):
+    test_takeoff(drone)
+    time.sleep(1)
     test_move(drone)
     time.sleep(1)
     while True:
